@@ -4,21 +4,25 @@ const winnerModal = document.querySelector('.winner-modal');
 const winnerNameDisplay = document.querySelector('.winner-name-display');
 const resetBtn = document.getElementById('reset-btn');
 const backdrop = document.querySelector('.backdrop');
+const playerOneDisplay = document.querySelector('.player-one');
+const playerTwoDisplay = document.querySelector('.player-two');
 
 
-const player = (name, marker) => {
-    const sayName = () => console.log(`${name}`);
-    const sayMarker = () => console.log(`${marker}`)
-    return { name, marker, sayName, sayMarker};
+const craetePlayers = (name, marker,) => {
+    const sayName = () => 
+    playerOneDisplay.innerHTML = `${name} is ${marker}`
+    playerTwoDisplay.innerHTML = `${name} is ${marker}`;
+    
+    return {name, marker, sayName};
 };
 
-const playerOne = player('Bradley', 'X');
-const playerTwo = player('Tessa', 'O');
+const playGame = (name, marker, )
 
-console.log(playerOne.sayName());
-console.log(playerOne.sayMarker());
-console.log(playerTwo.sayName());
-console.log(playerTwo.sayMarker());
+const playerOne = craetePlayers('Bradley', 'X');
+const playerTwo = craetePlayers('Tessa', 'O');
+playerOne.sayName();
+
+
 
 
 
@@ -27,7 +31,7 @@ cells.forEach(cell => {
         if(playerOne.marker === 'X'){
             cell.classList.add('x');
 
-        }else if(playerTwo.marker === 'O'){
+        }else {
             cell.classList.add('circle');
         }
     })

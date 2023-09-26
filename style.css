@@ -11,6 +11,19 @@ body{
     margin: 0;
 }
 
+.player-display{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+.player-one{
+    
+    margin-right: 50px;
+}
+
 .container{
     width: 100vw;
     height: 100vh;
