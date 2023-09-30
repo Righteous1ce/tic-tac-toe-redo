@@ -14,15 +14,15 @@ const playerSubmitBtn = document.getElementById('submit-btn');
 
 
 const createPlayers = (name, marker) => {
-    let playerName = name;
-    let playerMarker = marker;
+    const playerName = name;
+    const playerMarker = marker;
 
     getName = () => playerName;
     getMarker = () => playerMarker;
 
     return {
         getName,
-        getMarker
+        getMarker,
     };
 };
 
@@ -30,19 +30,20 @@ const createPlayers = (name, marker) => {
 
 
 //const playerOne = createPlayers('Bradley', 'X');
-//const playerTwo = createPlayers('Tessa', 'O')
+//const playerTwo = createPlayers('Tessa', 'O');
 
 
+let playerOne = '';
+let playerTwo = '';
 
-
-
+let currentPlayer = 'X';
 
 playerSubmitBtn.addEventListener('click', () => {
     const playerOneName = playerOneInput.value;
     const playerTwoName = playerTwoInput.value;
 
-    const playerOne = createPlayers(playerOneName, 'X');
-    const playerTwo = createPlayers(playerTwoName, 'O');
+    playerOne = createPlayers(playerOneName, 'X');
+    playerTwo = createPlayers(playerTwoName, 'O');
   
     playerOneDisplay.innerHTML = `${playerOne.getName()} is ${playerOne.getMarker()}`
     playerTwoDisplay.innerHTML = `${playerTwo.getName()} is ${playerTwo.getMarker()}`
@@ -51,47 +52,35 @@ playerSubmitBtn.addEventListener('click', () => {
 });
 
 
+const togglePlayer = () => {
 
-const togglePlayer = (currentPlayer) => {
-    return currentPlayer === 'X' ? 'O' : 'X';
-}
+    currentPlayer = currentPlayer === 'X' ? 'O': 'X';
+    
+};
 
-let  currentPlayer = 'X';
-
-
+//console.log('current player ' + currentPlayer)
+//togglePlayer();
+//console.log('current player ' + currentPlayer)
+//togglePlayer();
+//console.log('current player ' + currentPlayer)
 
 
 cells.forEach(cell => {
     cell.addEventListener('click', () => {
         if(currentPlayer === 'X'){
-            cell.classList.add('currentPlayer')
+            cell.classList.add('x');
+            togglePlayer();
+            
+        }else {
+            cell.classList.add('circle');
+            togglePlayer();
+            
         }
-
-        currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
-        console.log('hel')
-    })
-})
+    });
+});
 
 
-
-
-
-
-
-
-
-//cells.forEach(cell => {
-//    cell.addEventListener('click', () => {
-//        if(playerOne.marker === 'X'){
-//            cell.classList.add('x');
-//
-//        }else {
-//            cell.classList.add('circle');
-//        }
-//    })
-//})
 /*
-
 if(playerOne.name === 'Bradley'){
     winnerModal.classList.add('active');
     backdrop.classList.add('active');
