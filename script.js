@@ -29,8 +29,10 @@ const createPlayers = (name, marker) => {
 let playerOne = '';
 let playerTwo = '';
 let currentPlayer = 'X'; 
+let gameStarted = false
 
 playerSubmitBtn.addEventListener('click', () => {
+    gameStarted = true;
     
     const playerOneName = playerOneInput.value;
     const playerTwoName = playerTwoInput.value;
@@ -100,7 +102,10 @@ function checkForWinner() {
 
 cells.forEach(cell => {
     cell.addEventListener('click', () => {
+        if(gameStarted){
 
+
+        
         if(!cell.classList.contains('x') && !cell.classList.contains('circle')){
             if(currentPlayer === 'X'){
                 cell.classList.add('x'); 
@@ -111,7 +116,6 @@ cells.forEach(cell => {
 
         }
             
-       
         
         const winner = checkForWinner();
         if (winner) {
@@ -122,9 +126,10 @@ cells.forEach(cell => {
         } else{
             console.log('no winner yet');
         }
-
+    }
 
     });
+
 });
 
 
@@ -143,8 +148,6 @@ resetBtn.addEventListener('click', () => {
     backdrop.classList.remove('active');
     playerOneInput.value = '';
     playerTwoInput.value = '';
-    playerOneDisplay.innerHTML = '';
-    playerTwoDisplay.innerHTML = '';
     clearBoard();
     currentPlayer ='X'
     
