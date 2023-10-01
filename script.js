@@ -31,11 +31,27 @@ let playerTwo = '';
 let currentPlayer = 'X'; 
 
 playerSubmitBtn.addEventListener('click', () => {
+    
     const playerOneName = playerOneInput.value;
     const playerTwoName = playerTwoInput.value;
 
-    playerOne = createPlayers(playerOneName, 'X');
-    playerTwo = createPlayers(playerTwoName, 'O');
+    if(playerOneName === '' ){
+        playerOne = createPlayers('Player One', 'X');
+        playerOneDisplay.innerHTML = `${playerOne.getName()} is ${playerOne.getMarker()}`
+    } else {
+        playerOne = createPlayers(playerOneName, 'X');
+
+    }
+    
+    
+    if(playerTwoName === ''){
+        playerTwo = createPlayers('Player Two', 'O');
+        playerTwoDisplay.innerHTML = `${playerTwo.getName()} is ${playerTwo.getMarker()}`
+    }else {
+
+        playerTwo = createPlayers(playerTwoName, 'O');
+    }
+
 
   
     playerOneDisplay.innerHTML = `${playerOne.getName()} is ${playerOne.getMarker()}`
@@ -46,34 +62,6 @@ playerSubmitBtn.addEventListener('click', () => {
 const togglePlayer = () => {
     currentPlayer = currentPlayer === 'X' ? 'O': 'X';
 };
-
-
-
-cells.forEach(cell => {
-    cell.addEventListener('click', () => {
-        if(currentPlayer === 'X'){
-            cell.classList.add('x'); 
-        }else {
-            cell.classList.add('circle');
-        }
-
-        togglePlayer();
-        
-        const winner = checkForWinner();
-        if (winner) {
-            winnerModal.classList.add('active');
-            backdrop.classList.add('active');
-            winnerNameDisplay.innerHTML = `${winner}, is the Winner!`
-            
-        } else{
-            console.log('no winner yet');
-        }
-
-
-    });
-});
-
-
 
 
 function checkForWinner() {
@@ -110,6 +98,44 @@ function checkForWinner() {
 
 
 
+cells.forEach(cell => {
+    cell.addEventListener('click', () => {
+
+        if(!cell.classList.contains('x') && !cell.classList.contains('circle')){
+            if(currentPlayer === 'X'){
+                cell.classList.add('x'); 
+            }else {
+                cell.classList.add('circle');
+            }
+            togglePlayer();
+
+        }
+            
+       
+        
+        const winner = checkForWinner();
+        if (winner) {
+            winnerModal.classList.add('active');
+            backdrop.classList.add('active');
+            winnerNameDisplay.innerHTML = `${winner}, is the Winner!`
+            
+        } else{
+            console.log('no winner yet');
+        }
+
+
+    });
+});
+
+
+const clearBoard = () =>{
+    resetCells = document.querySelectorAll('.cells');
+
+    cells.forEach(cell => {
+        cell.classList.remove('x', 'circle');
+    })
+}
+
 
 
 resetBtn.addEventListener('click', () => {
@@ -119,6 +145,8 @@ resetBtn.addEventListener('click', () => {
     playerTwoInput.value = '';
     playerOneDisplay.innerHTML = '';
     playerTwoDisplay.innerHTML = '';
-    
+    clearBoard();
+    currentPlayer ='X'
     
 });
+

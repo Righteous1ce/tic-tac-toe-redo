@@ -98,10 +98,11 @@ input:focus{
     align-items: center;
     width: var(--cell-size);
     height: var(--cell-size);
-    border: 1px solid black;
+    border: 1px solid rgb(86, 20, 200);
     cursor: pointer;
-    
+
 }
+
 
 
 .cells:first-child ,
